@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Services\Contracts\QrCodeServiceInterface;
+use App\Contracts\Services\QrCodeServiceInterface;
 use App\Services\QrCodeService;
 use Illuminate\Support\ServiceProvider;
 

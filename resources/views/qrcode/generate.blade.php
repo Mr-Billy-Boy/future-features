@@ -8,7 +8,11 @@
 <div class="visible-print text-center">
      
     <center>
-        <img  src="data:image/png;base64, {!! base64_encode($qrcode) !!}" class="img-fluid " />
+        @if ($image)
+            <img  src="data:image/png;base64, {!! base64_encode($image) !!}" class="img-fluid " />
+        @else
+            Please check the parameter in the url
+        @endif
 
         <h4>
             {!! $title !!}<br>
