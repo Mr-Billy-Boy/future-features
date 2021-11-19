@@ -98,11 +98,11 @@ class QrCodeService implements QrCodeServiceInterface
         return $this->encode('', $args);
     }
 
-    public function phoneNumber(string $phoneNumber, 
+    public function encodePhoneNumber(string $phoneNumber, 
                                 array $args = [])
     {
         $this->type             = 'phonenumber';
-        $args['phonenumber']    = $phoneNumber;
+        $this->phoneNumber      = $phoneNumber;
 
         return $this->encode('', $args);
     }

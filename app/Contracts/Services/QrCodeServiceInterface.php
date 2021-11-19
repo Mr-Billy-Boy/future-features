@@ -33,6 +33,6 @@ interface QrCodeServiceInterface
      * @param string $phoneNumber
      * @return array with image base64
      */
-    public function phoneNumber(string $phoneNumber, 
+    public function encodePhoneNumber(string $phoneNumber, 
                                 array $args = []);
 }

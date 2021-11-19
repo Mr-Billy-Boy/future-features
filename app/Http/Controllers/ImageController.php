@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ImageController extends Controller
 {
-    public function qrCode(Request $request, QrCodeService $qrCodeService)
+    public function encode(Request $request, QrCodeService $qrCodeService)
     {
         $this->data = $qrCodeService->encode($request->data, 
                                              [
@@ -16,21 +16,29 @@ class ImageController extends Controller
                                                  'enCrypt'  => $request->encrypt
                                              ]);
 
-        // $this->data = $qrCodeService->encodeEmail($request->email,
-        //                                           $request->subject,
-        //                                           $request->body,
-        //                                           [
-        //                                               'title'    => $request->title,
-        //                                               'subtitle' => $request->subtitle,
-        //                                               'enCrypt'  => $request->encrypt
-        //                                           ]);
+        return view('qrcode.generate', $this->data);
+    }
 
-        // $this->data = $qrCodeService->phoneNumber($request->phonenumber,
-        //                                           [
-        //                                               'title'    => $request->title,
-        //                                               'subtitle' => $request->subtitle,
-        //                                               'enCrypt'  => $request->encrypt
-        //                                           ]);
+    public function encodeEmail(Request $request, QrCodeService $qrCodeService)
+    {
+        $this->data = $qrCodeService->encodeEmail($request->email,
+                                                  $request->subject,
+                                                  $request->body,
+                                                  [
+                                                      'title'    => $request->title,
+                                                      'subtitle' => $request->subtitle,
+                                                  ]);
+
+        return view('qrcode.generate', $this->data);
+    }
+
+    public function encodePhoneNumber(Request $request, QrCodeService $qrCodeService)
+    {
+        $this->data = $qrCodeService->encodePhoneNumber($request->phonenumber,
+                                                        [
+                                                            'title'    => $request->title,
+                                                            'subtitle' => $request->subtitle,
+                                                        ]);
 
         return view('qrcode.generate', $this->data);
     }
